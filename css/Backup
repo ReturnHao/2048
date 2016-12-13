@@ -1,0 +1,56 @@
+#Grid_wrapper{
+    position: relative;
+    left: 32%;
+    width: 470px;
+    height: 470px;
+    margin-top: -15px;
+    padding: 30px;
+}
+
+#Backgound_container{
+    position: absolute;
+    width: 470px;
+    height: 470px;
+    border-radius: 10px;
+    background-color: #bbada0;
+    opacity: 0.9;
+}
+
+#Grid_container{
+    width: 470px;
+    height: 470px;
+    padding: 15px;
+}
+
+.grid_cell{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    float: left;
+    border-radius: 6px;
+    background-color: #ccc0b3;
+}
+
+
+    <div id="Grid_wrapper">
+        <div id="Backgound_container"></div>
+        <div id="Grid_container">
+            <div class="grid_cell" id="grid_cell_0_0"></div>
+            <div class="grid_cell" id="grid_cell_0_1"></div>
+            <div class="grid_cell" id="grid_cell_0_2"></div>
+            <div class="grid_cell" id="grid_cell_0_3"></div>
+            <div class="grid_cell" id="grid_cell_1_0"></div>
+            <div class="grid_cell" id="grid_cell_1_1"></div>
+            <div class="grid_cell" id="grid_cell_1_2"></div>
+            <div class="grid_cell" id="grid_cell_1_3"></div>
+            <div class="grid_cell" id="grid_cell_2_0"></div>
+            <div class="grid_cell" id="grid_cell_2_1"></div>
+            <div class="grid_cell" id="grid_cell_2_2"></div>
+            <div class="grid_cell" id="grid_cell_2_3"></div>
+            <div class="grid_cell" id="grid_cell_3_0"></div>
+            <div class="grid_cell" id="grid_cell_3_1"></div>
+            <div class="grid_cell" id="grid_cell_3_2"></div>
+            <div class="grid_cell" id="grid_cell_3_3"></div>
+        </div>
+    </div>

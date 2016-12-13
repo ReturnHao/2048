@@ -1,0 +1,112 @@
+body{
+    margin: 0; padding: 0;
+    background: url('../image/background.jpg') no-repeat;
+    -webkit-background-size: auto;
+    background-size: auto; overflow: hidden;
+}
+
+.Title_wrapper{
+    position: relative;
+    margin: 30px auto;
+    height: 200px;
+    font-weight: bold;
+    font-family: "Microsoft YaHei";
+    text-align: center;
+    text-decoration: none;
+}
+
+#Title_container{
+    position: relative;
+    font-size: 45px;
+    color: #fcad7f;
+}
+
+#Button_container{
+    position: relative;
+    margin: -20px auto;
+    height: 60px;
+}
+
+.Title_button{
+    position: absolute;
+    display: block;
+    padding: 10px 10px;
+    background-color: #8f7a66;
+    width: 110px;
+    height: 20px;
+    color: white;
+    font-size: 15px;
+    text-decoration: none;
+    opacity: 0.7;
+}
+
+.Title_button:hover{
+    background: #9f8b77;
+    opacity: 0.7;
+}
+
+#New_game{
+    left: 36%;
+}
+
+#High_score{
+    right: 35%;
+}
+
+#Tiger_Mode{
+    margin-top: 2px;
+    margin-left: 2px;
+    width: 15px;
+    height: 15px;
+    left: 49%;
+}
+#Score_container{
+    position: relative;
+    margin: 15px auto;
+    font-family: "DIN Alternate";
+    font-weight: bold;
+    font-size: 30px;
+    color: #aaaaaa;
+    opacity: 0.8;
+}
+
+#Grid_wrapper{
+    position: relative;
+    left: 32%;
+    width: 470px;
+    height: 470px;
+    margin-top: -15px;
+    padding: 30px;
+}
+
+#Backgound_container{
+    position: absolute;
+    width: 470px;
+    height: 470px;
+    border-radius: 10px;
+    background-color: #bbada0;
+    opacity: 0.9;
+}
+
+#Grid_container{
+    width: 470px;
+    height: 470px;
+    padding: 15px;
+}
+
+.grid_cell{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 6px;
+    background-color: #ccc0b3;
+}
+
+.number_cell{
+    position: absolute;
+    font-family: "Arial";
+    font-weight: bold;
+    line-height: 100px;
+    text-align: center;
+    border-radius: 6px;
+}

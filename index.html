@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2048 by Patrick</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="Title_wrapper">
+        <div id="Title_container">
+            <p>Patrick | 2048</p>
+        </div>
+        <div id="Button_container">
+            <a href="javascript:New_game()" class="Title_button" id="New_game">New Game :)</a>
+            <a href="javascript:High_score()" class="Title_button" id="High_score">High Score!</a>
+            <a href="javascript:Tiger_Mode()" class="Title_button" id="Tiger_Mode"></a>
+        </div>
+        <div id="Score_container">
+            <p>Score:&nbsp;&nbsp;&nbsp;&nbsp;<span id="score">0</span></p>
+        </div>
+    </div>
+    <div id="Grid_wrapper">
+        <div id="Backgound_container"></div>
+        <div id="Grid_container">
+            <div class="grid_cell" id="grid_cell_0_0"></div>
+            <div class="grid_cell" id="grid_cell_0_1"></div>
+            <div class="grid_cell" id="grid_cell_0_2"></div>
+            <div class="grid_cell" id="grid_cell_0_3"></div>
+            <div class="grid_cell" id="grid_cell_1_0"></div>
+            <div class="grid_cell" id="grid_cell_1_1"></div>
+            <div class="grid_cell" id="grid_cell_1_2"></div>
+            <div class="grid_cell" id="grid_cell_1_3"></div>
+            <div class="grid_cell" id="grid_cell_2_0"></div>
+            <div class="grid_cell" id="grid_cell_2_1"></div>
+            <div class="grid_cell" id="grid_cell_2_2"></div>
+            <div class="grid_cell" id="grid_cell_2_3"></div>
+            <div class="grid_cell" id="grid_cell_3_0"></div>
+            <div class="grid_cell" id="grid_cell_3_1"></div>
+            <div class="grid_cell" id="grid_cell_3_2"></div>
+            <div class="grid_cell" id="grid_cell_3_3"></div>
+        </div>
+    </div>
+    <script src="jquery.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
