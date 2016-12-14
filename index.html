@@ -8,15 +8,17 @@
 <body>
     <div class="Title_wrapper">
         <div id="Title_container">
-            <p>Patrick | 2048</p>
+            <p> Patrick&nbsp;|&nbsp;2048&nbsp;&nbsp;&nbsp;</p>
         </div>
-        <div id="Button_container">
-            <a href="javascript:New_game()" class="Title_button" id="New_game">New Game :)</a>
-            <a href="javascript:High_score()" class="Title_button" id="High_score">High Score!</a>
-            <a href="javascript:Tiger_Mode()" class="Title_button" id="Tiger_Mode"></a>
+        <div id="Button_wrapper">
+            <div id="Button_container">
+                <div onclick="javascript:New_game()" class="Title_button" id="New_game">New Game :)</div>
+                <div onclick="javascript:Tiger_Mode()" class="Title_button" id="Tiger_Mode"></div>
+                <div onclick="javascript:High_score()" class="Title_button" id="High_score">High Score!</div>
+            </div>
         </div>
         <div id="Score_container">
-            <p>Score:&nbsp;&nbsp;&nbsp;&nbsp;<span id="score">0</span></p>
+            <p>Score:    <span id="score">0</span></p>
         </div>
     </div>
     <div id="Grid_wrapper">
