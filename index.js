@@ -367,14 +367,14 @@ function High_score(){
         Disp_score = 1;
     }
     Score_button.innerHTML = Cur_disp;
-    if (Disp_score == 1){
+    /*if (Disp_score == 1){
         Score_button.style.fontFamily = "DIN Alternate";
         Score_button.style.fontSize = "20px";
     }
     else{
         Score_button.style.fontFamily = "Microsoft YaHei";
         Score_button.style.fontSize = "15px";
-    }
+    }*/
 }
 
 function New_game(){
