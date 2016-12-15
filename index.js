@@ -6,8 +6,23 @@ var Board = [], Score = 0, Max_score = 0, Disp_score, Alerted, Cur_disp, Has_col
 var Cell_side_length = 100;
 var Cell_space = 15;
 
+function Rand_Block(){
+    var Seed = Math.random();
+    if (Seed < 0.0455) return "X";
+    else if (Seed < 0.0909) return "?";
+         else return (Seed < 0.6)?(2):(4);
+}
+
 function Judge(x, y){
     return ((x >= 0) && (x <= 3) && (y >= 0) && (y <= 3));
+}
+
+function Spl(x){
+    return ((x == "X") || (x == "?"));
+}
+
+function Can_merge(x, y){
+    return ((x == y) || (Spl(x)) || (Spl(y)));
 }
 
 function Can_vertical(x, Adj){
@@ -15,7 +30,7 @@ function Can_vertical(x, Adj){
         for (var j = 0; j < 4; j++)
             if ((Judge(i, j)) && (Judge(i + Adj, j))) {
                 if (x[i][j] != 0) {
-                    if ((x[i + Adj][j] == 0) || (x[i + Adj][j] == x[i][j])) return true;
+                    if ((x[i + Adj][j] == 0) || (Can_merge(x[i + Adj][j], x[i][j]))) return true;
                 }
             }
     }
@@ -27,7 +42,7 @@ function Can_horizontal(x, Adj){
         for (var j = 0; j < 4; j++)
             if ((Judge(i, j)) && (Judge(i, j + Adj))) {
                 if (x[i][j] != 0) {
-                    if ((x[i][j + Adj] == 0) || (x[i][j + Adj] == x[i][j])) return true;
+                    if ((x[i][j + Adj] == 0) || (Can_merge(x[i][j + Adj], x[i][j]))) return true;
                 }
             }
     }
@@ -84,6 +99,8 @@ function Get_number_color(x){
 }
 
 function Get_number_size(x){
+    if (x == "?") return 60;
+    if (x == "X") return 55;
     if (x <= 64) return 60;
     else
         if (x <= 512) return 55;
@@ -188,11 +205,44 @@ function Upload_horizontal(i, j, k){
         Board[i][j] = 0;
     }
     else{
-        if ((Board[i][k] == Board[i][j]) && (No_block_horizontal(i, k, j)) && (!Has_collide[i][k])){
-            Draw_moving(i, j, i, k);
-            Board[i][k] *= 2;
-            Board[i][j] = 0;
-            Score += Board[i][k];
+        if ((Can_merge(Board[i][k], Board[i][j])) && (No_block_horizontal(i, k, j)) && (!Has_collide[i][k])){
+            if ((Board[i][k] != "?") && (Board[i][j] != "?")) Draw_moving(i, j, i, k);
+            if ((Spl(Board[i][k])) && (Spl(Board[i][j]))){
+                Board[i][k] = "X";
+                Board[i][j] = 0;
+                Has_collide[i][k] = true;
+                return;
+            }
+            var Bomb = Math.random(), Ref = 0;
+            if ((Board[i][k] == "?") || (Board[i][j] == "?")){
+                if (Bomb < 0.2){
+                    Ref = 1;
+                    Board[i][k] = 0;
+                    if (Judge(i - 1, k)) Board[i - 1][k] = 0;
+                    if (Judge(i + 1, k)) Board[i + 1][k] = 0;
+                    if (Judge(i, k - 1)) Board[i][k - 1] = 0;
+                    if (Judge(i, k + 1)) Board[i][k + 1] = 0;
+                }
+            }
+            if (Spl(Board[i][k])){
+                if (Board[i][k] == "X"){
+                    Board[i][k] = 2 * Board[i][j];
+                    Score += Board[i][j];
+                }
+            }
+            else{
+                if (Board[i][j] == "X"){
+                    Board[i][k] = 2 * Board[i][k];
+                    Score += Board[i][k];
+                }
+                else
+                    if (Board[i][j] != "?"){
+                        Board[i][k] = 2 * Board[i][k];
+                        Score += Board[i][k];
+                    }
+            }
+            if (Board[i][j] != "?") Board[i][j] = 0;
+            else if (Ref == 1) Board[i][j] = 0;
             Update_score(Score);
             Has_collide[i][k] = true;
         }
@@ -206,11 +256,44 @@ function Upload_vertical(i, j, k){
         Board[i][j] = 0;
     }
     else{
-        if ((Board[k][j] == Board[i][j]) && (No_block_vertical(j, k ,i)) && (!Has_collide[k][j])){
-            Draw_moving(i, j, k, j);
-            Board[k][j] *= 2;
-            Board[i][j] = 0;
-            Score += Board[k][j];
+        if ((Can_merge(Board[k][j], Board[i][j])) && (No_block_vertical(j, k ,i)) && (!Has_collide[k][j])){
+            if ((Board[k][j] != "?") && (Board[i][j] != "?")) Draw_moving(i, j, k, j);
+            if ((Spl(Board[k][j])) && (Spl(Board[i][j]))){
+                Board[k][j] = "X";
+                Board[i][j] = 0;
+                Has_collide[k][j] = true;
+                return;
+            }
+            var Bomb = Math.random(), Ref = 0;
+            if ((Board[k][j] == "?") || (Board[i][j] == "?")){
+                if (Bomb < 0.2){
+                    Ref = 1;
+                    Board[k][j] = 0;
+                    if (Judge(k - 1, j)) Board[k - 1][j] = 0;
+                    if (Judge(k + 1, j)) Board[k + 1][j] = 0;
+                    if (Judge(k, j - 1)) Board[k][j - 1] = 0;
+                    if (Judge(k, j + 1)) Board[k][j + 1] = 0;
+                }
+            }
+            if (Spl(Board[k][j])){
+                if (Board[k][j] == "X"){
+                    Board[k][j] = 2 * Board[i][j];
+                    Score += Board[i][j];
+                }
+            }
+            else{
+                if (Board[i][j] == "X"){
+                    Board[k][j] = 2 * Board[k][j];
+                    Score += Board[k][j];
+                }
+                else
+                    if (Board[i][j] != "?"){
+                        Board[k][j] = 2 * Board[k][j];
+                        Score += Board[k][j];
+                    }
+            }
+            if (Board[i][j] != "?") Board[i][j] = 0;
+            else if (Ref == 1) Board[i][j] = 0;
             Update_score(Score);
             Has_collide[k][j] = true;
         }
@@ -346,7 +429,7 @@ function Generate_num(){
     if (No_space(Board)) return false;
     var Rand_x = parseInt(Math.floor(Math.random() * 4)),
         Rand_y = parseInt(Math.floor(Math.random() * 4)),
-        Rand_num = (Math.random() < 0.5)? (2) : (4);
+        Rand_num = Rand_Block();
     while (true){
         if (Board[Rand_x][Rand_y] == 0) break;
         Rand_x = parseInt(Math.floor(Math.random() * 4));
